@@ -6,6 +6,7 @@ import random
 
 GENERATIONS = 1000
 INDIVIDUALS = 8
+RANGE = 5
 BEST_SELECTION = INDIVIDUALS // 2
 MUTATION = INDIVIDUALS - BEST_SELECTION
 
@@ -18,7 +19,7 @@ def reproduction(x1, x2):
     return (x1 + x2) / 2
 
 
-values = [random.random() * (INDIVIDUALS - 1) for i in range(INDIVIDUALS)]
+values = [random.random() * (RANGE - 1) for i in range(INDIVIDUALS)]
 results = [equation(value) for value in values]
 for g in range(GENERATIONS):
 
@@ -30,7 +31,7 @@ for g in range(GENERATIONS):
     offspring = [reproduction(best[i], best[i+1]) for i in range(0, BEST_SELECTION - 1, 2)]
     offspring_2 = [reproduction(best[i], best[i+2]) for i in range(0, BEST_SELECTION - 2)]
     [offspring.append(son) for son in offspring_2]
-    [offspring.append(random.random() * (INDIVIDUALS - 1)) for i in range(MUTATION)]
+    [offspring.append(random.random() * (RANGE - 1)) for i in range(MUTATION)]
     values = offspring
     results = [equation(value) for value in values]
 
